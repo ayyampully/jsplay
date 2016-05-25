@@ -2,9 +2,9 @@
   "name": "JSplay",
   "version": "1.0.0",
   "description": "Simple games using javascript",
-  "main": "gulpfile.js",
+  "main": "server.js",
   "scripts": {
-    "start": "gulp ready"
+    "test": "./node_modules/.bin/mocha"
   },
   "author": "rohith.ayyampully",
   "license": "MIT",
@@ -14,6 +14,20 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-browserify": "^0.5.1",
-    "gulp-uglify": "^1.5.3"
-  }
+    "gulp-uglify": "^1.5.3",
+    "mocha": "^2.5.2"
+  },
+  "testling": {
+    "files": "test/*.js",
+    "browsers": [
+      "ie/9..latest",
+      "chrome/22..latest",
+      "firefox/16..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6",
+      "ipad/6",
+      "android-browser/latest"
+    ]
+  },
 }

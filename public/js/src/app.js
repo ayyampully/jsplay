@@ -1,47 +1,6 @@
-import Snake from './game.js';
-
+import Snake from './game';
+import jsPlay from './jsplay';
 (function(){
-
-var jsPlay = (function(){
-	//Private stuffs
-	var activePlayers = 0;
-	var colorArray = ['red', 'green', 'blue', 'yellow'];
-	var PlayerObj = {
-		init: function(name, id, color){
-			this.name = name;
-			this.id = 'player-'+id;
-			this.position = 0;
-			this.forwardFlag = true;
-			this.color = color;
-		},
-		setCurrentPosition: function(newPos){
-			this.position = newPos
-		},
-		getCurrentPosition: function(){
-			return this.position
-		}
-	};
-
-	//Public stuffs
-	var publicApi = {}
-
-	
-	publicApi.setStage = function(game){
-		//TODO - setup the ui and call init
-		popup(game)
-	}
-
-	publicApi.setPlayer = function(name){
-		var player = Object.create(PlayerObj);
-		activePlayers++;
-		player.init(name,activePlayers,colorArray[activePlayers-1]);
-
-		return player;
-	}
-	return publicApi;
-})();
-
-
 
 function addRipple(e){
 	var target = e.currentTarget,
@@ -81,15 +40,15 @@ function startGame(e){
 	jsPlay.setStage(game);
 
 }
-function popup(game){
-	document.querySelector('.popup-wrap').style.display = 'block'
-}
+
 function saveSettings(game){
 	var players = [];
 		players[0] = document.getElementById('player1').value;
 		players[1] = document.getElementById('player2').value;
 
 	var playerArry = players.map(function(name){
+		var p = jsPlay.setPlayer(name);
+		console.log(typeof(p))
 		return jsPlay.setPlayer(name);
 	})
 	//var player = jsPlay.setPlayer(name);

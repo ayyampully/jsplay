@@ -1,51 +1,19 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var _game = require('./game.js');
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var _game = require('./game');
 
 var _game2 = _interopRequireDefault(_game);
+
+var _jsplay = require('./jsplay');
+
+var _jsplay2 = _interopRequireDefault(_jsplay);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (function () {
-
-	var jsPlay = function () {
-		//Private stuffs
-		var activePlayers = 0;
-		var colorArray = ['red', 'green', 'blue', 'yellow'];
-		var PlayerObj = {
-			init: function init(name, id, color) {
-				this.name = name;
-				this.id = 'player-' + id;
-				this.position = 0;
-				this.forwardFlag = true;
-				this.color = color;
-			},
-			setCurrentPosition: function setCurrentPosition(newPos) {
-				this.position = newPos;
-			},
-			getCurrentPosition: function getCurrentPosition() {
-				return this.position;
-			}
-		};
-
-		//Public stuffs
-		var publicApi = {};
-
-		publicApi.setStage = function (game) {
-			//TODO - setup the ui and call init
-			popup(game);
-		};
-
-		publicApi.setPlayer = function (name) {
-			var player = Object.create(PlayerObj);
-			activePlayers++;
-			player.init(name, activePlayers, colorArray[activePlayers - 1]);
-
-			return player;
-		};
-		return publicApi;
-	}();
 
 	function addRipple(e) {
 		var target = e.currentTarget,
@@ -82,18 +50,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 	AddEvent('.game-settings', 'click', saveSettings);
 	function startGame(e) {
 		var game = e.target.getAttribute('data-id');
-		jsPlay.setStage(game);
+		_jsplay2.default.setStage(game);
 	}
-	function popup(game) {
-		document.querySelector('.popup-wrap').style.display = 'block';
-	}
+
 	function saveSettings(game) {
 		var players = [];
 		players[0] = document.getElementById('player1').value;
 		players[1] = document.getElementById('player2').value;
 
 		var playerArry = players.map(function (name) {
-			return jsPlay.setPlayer(name);
+			var p = _jsplay2.default.setPlayer(name);
+			console.log(typeof p === 'undefined' ? 'undefined' : _typeof(p));
+			return _jsplay2.default.setPlayer(name);
 		});
 		//var player = jsPlay.setPlayer(name);
 		document.querySelector('.popup-wrap').style.display = 'none';
@@ -102,7 +70,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 	}
 })();
 
-},{"./game.js":2}],2:[function(require,module,exports){
+},{"./game":2,"./jsplay":3}],2:[function(require,module,exports){
 'use strict';
 
 var Snake = function publicFunc() {
@@ -352,5 +320,52 @@ var Snake = function publicFunc() {
 	return publicApi;
 }();
 module.exports = Snake;
+
+},{}],3:[function(require,module,exports){
+'use strict';
+
+var jsPlay = function () {
+	//Private stuffs
+	var activePlayers = 0;
+	var colorArray = ['red', 'green', 'blue', 'yellow'];
+	var PlayerObj = {
+		init: function init(name, id, color) {
+			this.name = name;
+			this.id = 'player-' + id;
+			this.position = 0;
+			this.forwardFlag = true;
+			this.color = color;
+		},
+		setCurrentPosition: function setCurrentPosition(newPos) {
+			this.position = newPos;
+		},
+		getCurrentPosition: function getCurrentPosition() {
+			return this.position;
+		}
+	};
+
+	//Public stuffs
+	var publicApi = {};
+
+	publicApi.setStage = function (game) {
+		//TODO - setup the ui and call init
+		popup(game);
+	};
+
+	publicApi.setPlayer = function (name) {
+		var player = Object.create(PlayerObj);
+		activePlayers++;
+		player.init(name, activePlayers, colorArray[activePlayers - 1]);
+
+		return player;
+	};
+	return publicApi;
+}();
+
+function popup(game) {
+	document.querySelector('.popup-wrap').style.display = 'block';
+}
+
+module.exports = jsPlay;
 
 },{}]},{},[1])
