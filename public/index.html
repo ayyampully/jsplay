@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<title>JSplay</title>
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+<link href="css/media.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>JSplay <sup style="font-size: 12px;">beta</sup></h1>
+     <button class="settings"></button>
+    </header>
+    <!-- <img src="images/settings-alt.png" id="lamp" /> -->
+    <div class="body-wrap">
+      <div class="home-body">
+          <nav class="main-nav">
+          <ul>
+              <li class="active">Snake and Ladder<span class="bar"></span></li>
+              <li>Dominos<span class="bar"></span></li>
+              <li>XOXO<span class="bar"></span></li>
+              <li>Notifications<span class="notif">3</span><span class="bar"></span></li>
+          </ul>
+        </nav>
+        <div class="content-wrapper">
+          
+          <div class="img-wrap"><img src="./images/game/snake.png" width="100%" /></div>
+          <div class="desc-wrap"> <p>Praesent molestie sapien a sagittis elementum. Praesent lorem sem, dapibus eu imperdiet non, lacinia ac erat. Maecenas placerat dui nibh, non tincidunt nibh rhoncus eu. Quisque vel interdum augue, at hendrerit nibh. Sed ac accumsan leo. Etiam tellus massa, aliquam ac elementum non, aliquet ultrices nunc.</p>
+            <button class="btn game-start" data-id="snake">Go</button>
+         </div>
+      </div>
+      </div>
+        <div class="game-body">
+          <div id="snakeLadder">
+            <canvas id="snake" width="700px" height="700px"></canvas>
+            <div id="actions">
+              <button class="dice"><label>Roll</label><span class="ripple"></span></button>
+            </div>
+          </div> 
+        </div>
+    </div>
+    <footer>
+      <p style="text-align:center">&copy;2016 JSplay</p>
+    </footer>
+  </div>
+  <div class="popup-wrap">
+    <div class="popup">
+      <div class="header">Snake and Ladder <span class="close">X</span></div>
+      <div class="body">
+          <div class="form">
+            <div class="input-text"
+            <label>Enter player 1 name</label><input type="text" name="name" id="player1" />
+          </div>
+          <div class="input-text"
+            <label>Enter player 2 name</label><input type="text" name="name" id="player2" />
+          </div>
+          </div>
+          <button class="btn game-settings" >START</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/dist/app.js"></script>
+</body>
+</html>
